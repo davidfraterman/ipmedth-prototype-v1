@@ -1,0 +1,215 @@
+{
+  "id": 563046,
+  "num_rows": 100,
+  "file_format": "json",
+  "name": "ipmedth",
+  "array": true,
+  "columns": [
+    {
+      "name": "number",
+      "null_percentage": 0,
+      "type": "Row Number",
+      "formula": null
+    },
+    {
+      "name": "sale_status",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "sold",
+        "for-sale",
+        "reserved"
+      ],
+      "selectionStyle": "weighted",
+      "distribution": [
+        {
+          "frequencies": {
+            "sold": "2",
+            "for-sale": "5",
+            "reserved": "2"
+          }
+        }
+      ],
+      "formula": null
+    },
+    {
+      "name": "type",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "penthouse",
+        "appartment"
+      ],
+      "selectionStyle": "weighted",
+      "distribution": [
+        {
+          "frequencies": {
+            "penthouse": "1",
+            "apartment": "20"
+          }
+        }
+      ],
+      "formula": null
+    },
+    {
+      "name": "price",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 225000,
+      "max": 1000000,
+      "decimals": 0,
+      "formula": null
+    },
+    {
+      "name": "furnished",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": null
+    },
+    {
+      "name": "indoor_surface",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 30,
+      "max": 250,
+      "decimals": 0,
+      "formula": "0.00023809524 * price"
+    },
+    {
+      "name": "bedrooms",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 1,
+      "max": 5,
+      "decimals": 0,
+      "formula": "0.000015 * price"
+    },
+    {
+      "name": "extra_rooms",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 1,
+      "max": 5,
+      "decimals": 0,
+      "formula": "0.000015 * price"
+    },
+    {
+      "name": "balcony_direction",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "east",
+        "west",
+        "north",
+        "south"
+      ],
+      "selectionStyle": "random",
+      "distribution": null,
+      "formula": null
+    },
+    {
+      "name": "parking_spots",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 1,
+      "max": 3,
+      "decimals": 0,
+      "formula": "round(0.000001 * price, 0);\n"
+    },
+    {
+      "name": "floor",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 1,
+      "max": 25,
+      "decimals": 0,
+      "formula": null
+    },
+    {
+      "name": "disability_access",
+      "null_percentage": 0,
+      "type": "Boolean",
+      "formula": null
+    },
+    {
+      "name": "energy_label",
+      "null_percentage": 0,
+      "type": "Custom List",
+      "values": [
+        "F",
+        "E",
+        "D",
+        "B",
+        "A",
+        "A+",
+        "A++",
+        "A+++"
+      ],
+      "selectionStyle": "custom",
+      "distribution": [
+        {
+          "rule": "price > 750000",
+          "frequencies": {
+            "F": "0",
+            "E": "0",
+            "D": "0",
+            "B": "0",
+            "A": "1",
+            "A+": "2",
+            "A++": "1",
+            "A+++": "1"
+          }
+        },
+        {
+          "rule": "price > 900000",
+          "frequencies": {
+            "F": "0",
+            "E": "0",
+            "D": "0",
+            "B": "0",
+            "A": "0",
+            "A+": "1",
+            "A++": "2",
+            "A+++": "2"
+          }
+        },
+        {
+          "rule": "price < 750000",
+          "frequencies": {
+            "F": "0",
+            "E": "0",
+            "D": "1",
+            "B": "2",
+            "A": "2",
+            "A+": "1",
+            "A++": "0",
+            "A+++": "1"
+          }
+        },
+        {
+          "rule": "price < 500000",
+          "frequencies": {
+            "F": "0",
+            "E": "1",
+            "D": "1",
+            "B": "2",
+            "A": "3",
+            "A+": "1",
+            "A++": "0",
+            "A+++": "0"
+          }
+        }
+      ],
+      "formula": null
+    },
+    {
+      "name": "bathrooms",
+      "null_percentage": 0,
+      "type": "Number",
+      "min": 1,
+      "max": 3,
+      "decimals": 0,
+      "formula": "0.000015 * price"
+    }
+  ]
+}

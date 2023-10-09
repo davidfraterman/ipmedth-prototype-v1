@@ -1,45 +1,77 @@
 <template>
     <!-- plot popup -->
-    <section class="plot-popup" >
+    <section class="plot-popup">
         <section class="plot-popup__content">
             <section class="plot-popup__content__header">
-                <h2>{{ currentPlot.number }}</h2>
+                <h2>Appartment {{ currentPlot.number }}</h2>
 
             </section>
+            Properties
             <section class="plot-popup__content__body">
                 <section class="plot-popup__content__body__info">
                     <section class="plot-popup__content__body__info__content">
                         <h3>Price</h3>
-                        <!-- format in euro -->
                         <p>{{ currentPlot.price.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }) }}</p>
-                    </section>
-                    <section class="plot-popup__content__body__info__content">
-                        <h3>Size</h3>
-                        <p>{{ currentPlot.plot_surface }} m²</p>
-                    </section>
-                    <section class="plot-popup__content__body__info__content">
-                        <h3>Rooms</h3>
-                        <p>{{ currentPlot.room_count }}</p>
-                    </section>
-                    <section class="plot-popup__content__body__info__content">
-                        <h3>Bathrooms</h3>
-                        <p>{{ currentPlot.bathrooms }}</p>
                     </section>
                     <section class="plot-popup__content__body__info__content">
                         <h3>Type</h3>
                         <p>{{ currentPlot.type }}</p>
                     </section>
                     <section class="plot-popup__content__body__info__content">
-                        <h3>Status</h3>
-                        <p>{{ currentPlot.status }}</p>
+                        <h3>Indoor Surface</h3>
+                        <p>{{ currentPlot.indoor_surface }} m²</p>
                     </section>
+                    <section class="plot-popup__content__body__info__content">
+                        <h3>Bedrooms</h3>
+                        <p>{{ currentPlot.bedrooms }}</p>
+                    </section>
+                    <section class="plot-popup__content__body__info__content">
+                        <h3>Bathrooms</h3>
+                        <p>{{ currentPlot.bathrooms }}</p>
+                    </section>
+                    <section class="plot-popup__content__body__info__content">
+                        <h3>Other rooms</h3>
+                        <p>{{ currentPlot.extra_rooms }}</p>
+                    </section>
+                    <section class="plot-popup__content__body__info__content">
+                        <h3>Floor</h3>
+                        <p>{{ currentPlot.floor }}</p>
+                    </section>
+                   
+                    <section class="plot-popup__content__body__info__content">
+                        <h3>Status</h3>
+                        <p>{{ currentPlot.sale_status }}</p>
+                    </section>
+                    <section class="plot-popup__content__body__info__content">
+                        <h3>Balcony dir.</h3>
+                        <p>{{ currentPlot.balcony_direction }}</p>
+                    </section>
+                    <!-- Add more sections for other fields -->
+                    <section class="plot-popup__content__body__info__content">
+                        <h3>Furnished</h3>
+                        <p>{{ currentPlot.furnished ? 'Yes' : 'No' }}</p>
+                    </section>
+                    <section class="plot-popup__content__body__info__content">
+                        <h3>Energy label</h3>
+                        <p>{{ currentPlot.energy_label }}</p>
+                    </section>
+                 
+                 
+                  
+                    <section class="plot-popup__content__body__info__content">
+                        <h3>Parking spots</h3>
+                        <p>{{ currentPlot.parking_spots }}</p>
+                    </section>
+                    <section class="plot-popup__content__body__info__content">
+                        <h3>Disability access</h3>
+                        <p>{{ currentPlot.disability_access ? 'Yes' : 'No' }}</p>
+                    </section>
+                    <!-- Add more sections for other fields -->
                 </section>
             </section>
             <button class="select-plot-button" @click="toggleConfirmPopup()">This is my closest match</button>
-            <button class="plot-popup__content-close" 
-                @click="addToComparison(currentPlot.number)"
-                :class="{ alreadyAddedCompareStyling: comparisonNumbers.includes(currentPlot.number)}"
-            >
+            <button class="plot-popup__content-close" @click="addToComparison(currentPlot.number)"
+                :class="{ alreadyAddedCompareStyling: comparisonNumbers.includes(currentPlot.number) }">
                 {{ comparisonNumbers.includes(currentPlot.number) ? 'Added to comparison' : 'Add to comparison' }}
             </button>
             <br><br>
@@ -82,7 +114,7 @@ const toggleConfirmPopup = () => {
 }
 
 const addToComparison = (plotNr) => {
-    if(comparisonNumbers.value.includes(plotNr)) {
+    if (comparisonNumbers.value.includes(plotNr)) {
         return;
     }
 
@@ -92,8 +124,6 @@ const addToComparison = (plotNr) => {
 </script>
 
 <style scoped>
-
-
 .confirm-select {
     position: absolute;
     top: 0;
@@ -106,6 +136,7 @@ const addToComparison = (plotNr) => {
     align-items: center;
     background-color: rgba(0, 0, 0, .5);
 }
+
 .confirm-select__content {
     width: 90%;
     height: 30%;
@@ -118,6 +149,7 @@ const addToComparison = (plotNr) => {
     justify-content: center;
     align-items: center;
 }
+
 .confirm-select__content__button {
     width: 90%;
     padding: 1rem;
@@ -130,6 +162,7 @@ const addToComparison = (plotNr) => {
     border-radius: 10px;
     margin-top: 1rem;
 }
+
 .confirm-select__content__button-cancel {
     width: 90%;
     padding: 1rem;
@@ -199,7 +232,10 @@ const addToComparison = (plotNr) => {
 }
 
 .plot-popup__content__body {
+    max-height: 40vh;
+    overflow-y: scroll;
     margin: 1rem;
+    border: 1px solid grey;
 }
 
 .popup__content__body__info {
@@ -218,6 +254,7 @@ const addToComparison = (plotNr) => {
     padding: 1rem;
     border-bottom: 1px solid #000;
 }
+
 .alreadyAddedCompareStyling {
     background-color: #949494;
     border-color: #949494;

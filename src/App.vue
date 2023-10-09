@@ -1,12 +1,25 @@
 <template>
-  <section id="app">
+  <section :class="{ disableScrollApp: isPlotPopupOpen }">
     <TestStart v-if="!isTestStarted" @start="(name) => {handleTestStart(name)}" />
 
     <section v-if="isTestStarted">
 
       <!-- App -->
-      <HousesMap :comparisonNumbers="comparisonNumbers" @confirm="handleTestEnd()" @selectComparison="handleNewComparisonId($event)"/>
-      <FilterMenu @removeFromComparison="removeFromComparison($event)" :comparisonNumbers="comparisonNumbers" />
+      <HousesMap 
+       
+        :comparisonNumbers="comparisonNumbers" 
+        @confirm="handleTestEnd()" 
+        @selectComparison="handleNewComparisonId($event)"
+        :filters="filters"
+        @cancel="isPlotPopupOpen = false"
+        @plotClick="isPlotPopupOpen = true"
+      />
+      <FilterMenu 
+        :filters="filters"
+        @removeFromComparison="removeFromComparison($event)" 
+        @filterUpdate="filterUpdate($event)"
+        :comparisonNumbers="comparisonNumbers" 
+      />
       
       <!-- Completion and results -->
       <TestCompletion :isTestCompleted="isTestCompleted" @continue="isResultsOpen = true" />
@@ -41,6 +54,13 @@ const endTime = ref(null)
 const prototypeVersion = ref('1')
 const testerName = ref('')
 const comparisonNumbers = ref([])
+const isPlotPopupOpen = ref(false)
+const filters = ref({})
+
+const filterUpdate = (filtersParameter) => {
+  filters.value = filtersParameter
+  console.log('filter update', filtersParameter)
+}
 
 const handleNewComparisonId = (id) => {
   comparisonNumbers.value.push(id)
@@ -57,17 +77,17 @@ const handleTestStart = (name) => {
   testStatus.value = 'running'
   startTime.value = Date.now()
   
-  logs.value.push({
-    id: logs.value.length,
-    type: 'test-start',
-    time: new Date(),
-    millis: Date.now(),
-    location: {
+  appendLogEntry(
+    logs.value.length,
+    'test-start',
+    new Date(),
+    Date.now(),
+    {
       x: null,
       y: null,
     },
-    className: null,
-  })
+    null
+  )
 }
 
 const handleTestEnd = () => {
@@ -75,17 +95,17 @@ const handleTestEnd = () => {
   testStatus.value = 'ended'
   endTime.value = Date.now()
 
-  logs.value.push({
-    id: logs.value.length,
-    type: 'test-end',
-    time: new Date(),
-    millis: Date.now(),
-    location: {
+  appendLogEntry(
+    logs.value.length,
+    'test-end',
+    new Date(),
+    Date.now(),
+    {
       x: null,
       y: null,
     },
-    className: null,
-  })
+    null
+  )
 }
 
 // event logger
@@ -99,20 +119,30 @@ document.addEventListener('keydown', (e) => {
 
 const addLogEntry = (event) => {
   if (testStatus.value === 'running') {
-    logs.value.push({
-      id: logs.value.length,
-      type: event.type,
-      time: new Date(),
-      millis: Date.now(),
-      location: {
+    appendLogEntry(
+      logs.value.length,
+      event.type,
+      new Date(),
+      Date.now(),
+      {
         x: event.clientX,
         y: event.clientY,
       },
-      className: event.srcElement.className,
-    })
+      event.srcElement.className
+    )
   }
 }
 
+const appendLogEntry = (id, type, time, millis, location, className) => {
+  logs.value.push({
+    id: id,
+    type: type,
+    time: time,
+    millis: millis,
+    location: location,
+    className: className,
+  })
+}
 
 const logs = ref([])
 
@@ -134,5 +164,10 @@ const logs = ref([])
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.disableScrollApp {
+  max-height: 100vh;
+  overflow: hidden;
 }
 </style>

@@ -1,17 +1,17 @@
 <template>
     <section class="comparison">
-        <h1>Compare</h1>
+        <h1>Compare ({{ comparisonNumbers.length }})</h1>
         <table v-if="houses.length > 0">
             <thead>
                 <tr>
-                    <th></th>
+                    <th>Apprt. Number</th>
                     <th v-for="nr in comparisonNumbers" :key="nr">
                         {{ nr }} <p @click="removeFromComparison(nr)" class="removeFromComparison">remove</p>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(label, key) in filteredValues" :key="key">
+                <tr v-for="(label, key) in Object.keys(houses[0])" :key="key">
                     <td>{{ label }}</td>
                     <td v-for="house in houses" :key="house.number">
                         {{ house[label] }}
@@ -27,7 +27,7 @@
 </template>
   
 <script setup>
-import data from '@/assets/wonen-in-de-kuil.json'
+import data from '@/assets/ipmedth-dummy.json'
 import { ref, watch } from 'vue';
 import { defineProps, toRefs, defineEmits } from 'vue'
 
@@ -48,7 +48,7 @@ watch(comparisonNumbers.value, (newValue, oldValue) => {
 // const labels = ref([]);
 const houses = ref([]);
 
-const filteredValues = ref(["number", "price", "parking_count", "parking_value", "parking_description", "living_surface", "plot_surface", "type", "from_price", "to_price", "room_count", "service_costs", "description", "volume_unit", "volume_external", "energy_class", "energy_index", "energy_epc", "energy_beng", "bedrooms", "publish_at", "unpublished_at", "id", "status", "house_type"]);
+// const filteredValues = ref(["number", "price", "parking_count", "parking_value", "parking_description", "living_surface", "plot_surface", "type", "from_price", "to_price", "room_count", "service_costs", "description", "volume_unit", "volume_external", "energy_class", "energy_index", "energy_epc", "energy_beng", "bedrooms", "publish_at", "unpublished_at", "id", "status", "house_type"]);
 
 const setComparisons = () => {
     houses.value = [];
@@ -58,8 +58,8 @@ const setComparisons = () => {
         for (let i = 0; i < comparisonNumbers.value.length; i++) {
             const plotNumber = comparisonNumbers.value[i];
 
-            for (let j = 0; j < data.plots.length; j++) {
-                const plot = data.plots[j];
+            for (let j = 0; j < data.length; j++) {
+                const plot = data[j];
                 if (plot.number === plotNumber) {
                     console.log('plot', plot.number, plotNumber);
                     houses.value.push(plot);

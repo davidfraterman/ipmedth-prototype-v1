@@ -1,90 +1,186 @@
 <template>
     <section class="map" :class="{ disableScroll: isPlotPopupOpen }">
-        <p>Appartement buildling side view</p><br>
+        <br>
+        <p>Appartement building</p><br>
         <section class="apprtment_wrapper">
-            <section v-for="plot in data.plots" @click="handleWoningClick(plot.id)" :key="plot.id"
-                class="apprtment" :class="[
-                    { soldStyling: plot.status === 'verkocht' },
-                    { availableStyling: plot.status === 'te-koop' },
-                    { greyStyling: plot.status === 'in-optie' },
+            <section v-for="plot in data" @click="handleWoningClick(plot.number)" :key="plot.number" class="apprtment"
+                :class="[
+                    { soldStyling: plot.sale_status === 'sold' },
+                    { availableStyling: isPlotAvailable(plot) },
+                    { soldStyling: !isPlotAvailable(plot) },
                 ]">
                 {{ plot.number }}
                 <section class="apprtment-compare-icon" v-if="comparisonNumbers.includes(plot.number)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-                    <g fill="none">
-                        <path fill="currentColor" d="M6 4h6v16H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" opacity=".16" />
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7m4-16h1a2 2 0 0 1 2 2v1m0 10v1a2 2 0 0 1-2 2h-1m3-9v2M12 2v20" />
-                    </g>
-                </svg>
+                        <g fill="none">
+                            <path fill="currentColor" d="M6 4h6v16H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" opacity=".16" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7m4-16h1a2 2 0 0 1 2 2v1m0 10v1a2 2 0 0 1-2 2h-1m3-9v2M12 2v20" />
+                        </g>
+                    </svg>
                 </section>
             </section>
         </section>
     </section>
     <transition name="slide-fade">
-        <SinglePlotPopup v-if="isPlotPopupOpen && currentPlot !== null" :current-plot="currentPlot"
+        <SinglePlotPopup class="plot-popup" v-if="isPlotPopupOpen && currentPlot !== null" :current-plot="currentPlot"
             :comparisonNumbers="comparisonNumbers" @confirm="handleConfirm" @cancel="handleCancel"
             @comparison-add="emit('selectComparison', $event)">
         </SinglePlotPopup>
     </transition>
 </template>
-
+  
 <script setup>
-
-import { ref, defineEmits, defineProps } from 'vue'
-import data from '@/assets/wonen-in-de-kuil.json'
+import { ref, defineEmits, defineProps } from 'vue';
+import data from '@/assets/ipmedth-dummy.json';
 import SinglePlotPopup from './SinglePlotPopup.vue';
 
-defineProps({
+const emit = defineEmits(['confirm', 'cancel', 'selectComparison', 'plotClick']);
+
+// Props and data
+const props = defineProps({
     comparisonNumbers: Array,
-})
+    filters: Object,
+});
+const isPlotPopupOpen = ref(false);
+const currentPlot = ref(null);
 
-const emit = defineEmits(['confirm', 'cancel', 'selectComparison'])
+// Filtered plots computed property
 
-// Plot click
+
+// Methods
 const handleWoningClick = (id) => {
-    for (let i = 0; i < data.plots.length; i++) {
-        const plot = data.plots[i];
+    for (let i = 0; i < data.length; i++) {
+        const plot = data[i];
 
-        if (plot.id === id) {
-            console.log('plot', plot)
-            currentPlot.value = plot
-            isPlotPopupOpen.value = true
-
+        if (plot.number === id) {
+            currentPlot.value = plot;
+            isPlotPopupOpen.value = true;
+            emit('plotClick');
             break;
         }
     }
-}
+};
 
-// Popup handling
 const handleConfirm = () => {
-    isPlotPopupOpen.value = false
-    emit('confirm', currentPlot.value)
-}
+    emit('confirm');
+};
 
 const handleCancel = () => {
-    isPlotPopupOpen.value = false
-}
+    isPlotPopupOpen.value = false;
+    currentPlot.value = null;
+    emit('cancel');
+};
 
-const isPlotPopupOpen = ref(false)
-const currentPlot = ref(null)
 
 
+const isPlotAvailable = (plot) => {
+    if (props.filters !== undefined && props.filters !== null && Object.keys(props.filters).length > 0) {
+
+        const {
+            saleStatus,
+            type,
+            minPrice,
+            maxPrice,
+            furnished,
+            minIndoorSurface,
+            maxIndoorSurface,
+            minBedrooms,
+            maxBedrooms,
+            minExtraRooms,
+            maxExtraRooms,
+            minFloor,
+            maxFloor,
+            minBathrooms,
+            maxBathrooms,
+            balconyDirection,
+            parkingSpots,
+            storage,
+            energyLabel,
+        } = props.filters;
+        // console.log('props.filters', props.filters);
+
+        // Check if the plot's properties match the filter criteria
+        console.log(saleStatus);
+        const isSaleStatusMatch = saleStatus?.length === 0 || saleStatus?.includes(plot.sale_status);
+        console.log(plot);
+        const isTypeMatch = type.length === 0 || type?.includes(plot.type);
+        const isPriceMatch = (plot.price >= minPrice && plot.price <= maxPrice);
+        const isFurnishedMatch = furnished === '' || plot.furnished === furnished;
+        const isIndoorSurfaceMatch = (plot.indoor_surface >= minIndoorSurface && plot.indoor_surface <= maxIndoorSurface);
+        const isBedroomsMatch = (plot.bedrooms >= minBedrooms && plot.bedrooms <= maxBedrooms);
+        const isExtraRoomsMatch = (plot.extra_rooms >= minExtraRooms && plot.extra_rooms <= maxExtraRooms);
+        const isFloorMatch = (plot.floor >= minFloor && plot.floor <= maxFloor);
+        const isBathroomsMatch = (plot.bathrooms >= minBathrooms && plot.bathrooms <= maxBathrooms);
+        const isBalconyDirectionMatch = balconyDirection === '' || plot.balcony_direction === balconyDirection;
+        const isParkingSpotsMatch = parkingSpots === -1 || plot.parking_spots === parkingSpots;
+        const isStorageMatch = storage === '' || (storage === plot.has_storage);
+        const isEnergyLabelMatch = energyLabel === '' || plot.energy_label === energyLabel;
+
+        // Return true if all filter criteria are met, otherwise return false
+        console.log('isSaleStatusMatch', isSaleStatusMatch,
+            isTypeMatch,
+            isPriceMatch,
+            isFurnishedMatch,
+            isIndoorSurfaceMatch,
+            isBedroomsMatch,
+            isExtraRoomsMatch,
+            isFloorMatch,
+            isBathroomsMatch,
+            isBalconyDirectionMatch,
+            isParkingSpotsMatch,
+            isStorageMatch,
+            isEnergyLabelMatch);
+
+        if (isSaleStatusMatch &&
+            isTypeMatch &&
+            isPriceMatch &&
+            isFurnishedMatch &&
+            isIndoorSurfaceMatch &&
+            isBedroomsMatch &&
+            isExtraRoomsMatch &&
+            isFloorMatch &&
+            isBathroomsMatch &&
+            isBalconyDirectionMatch &&
+            isParkingSpotsMatch &&
+            isStorageMatch &&
+            isEnergyLabelMatch) {
+            console.log('true');
+        }
+
+        return (
+            isSaleStatusMatch &&
+            isTypeMatch &&
+            isPriceMatch &&
+            isFurnishedMatch &&
+            isIndoorSurfaceMatch &&
+            isBedroomsMatch &&
+            isExtraRoomsMatch &&
+            isFloorMatch &&
+            isBathroomsMatch &&
+            isBalconyDirectionMatch &&
+            isParkingSpotsMatch &&
+            isStorageMatch &&
+            isEnergyLabelMatch
+        );
+    } else {
+        return true;
+    }
+};
 </script>
-
 <style scoped>
 .slide-fade-enter-active {
-  transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
 }
 
 .slide-fade-leave-active {
-  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateY(-20px);
-  opacity: 0;
+    transform: translateY(-20px);
+    opacity: 0;
 }
 
 .disableScroll {
@@ -107,13 +203,16 @@ const currentPlot = ref(null)
 .map {
     margin: 1rem;
     overflow: scroll;
+    box-shadow: 10px 0px black;
     margin-bottom: 8rem;
 }
 
 .apprtment_wrapper {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
 
+    box-shadow: 4px 4px;
+
+    grid-template-columns: repeat(3, 1fr);
     /* transform: skew(10deg, 0deg) scale(0.7); */
 }
 
@@ -122,9 +221,10 @@ const currentPlot = ref(null)
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    border: 1px solid #000;
+    border: 1px solid rgb(71, 71, 71);
     padding: 0.25rem;
 }
+
 .apprtment-compare-icon {
     display: flex;
     align-items: center;
