@@ -1,6 +1,6 @@
 <template>
   <section :class="{ disableScrollApp: isPlotPopupOpen }">
-    <TestStart v-if="!isTestStarted" @start="(name) => {handleTestStart(name)}" />
+    <TestStart v-if="!isTestStarted" @start="handleTestStart($event)" />
 
     <section v-if="isTestStarted">
 
@@ -53,7 +53,7 @@ const isResultsOpen = ref(false)
 const testStatus = ref('not-started')
 const startTime = ref(null)
 const endTime = ref(null)
-const prototypeVersion = ref('1')
+const prototypeVersion = ref('')
 const testerName = ref('')
 const comparisonNumbers = ref([])
 const isPlotPopupOpen = ref(false)
@@ -97,8 +97,10 @@ const removeFromComparison = (id) => {
   comparisonNumbers.value.splice(index, 1)
 }
 
-const handleTestStart = (name) => {
-  testerName.value = name
+const handleTestStart = (info) => {
+  
+  testerName.value = info.testerName
+  prototypeVersion.value = info.prototypeVers
 
   isTestStarted.value = true
   testStatus.value = 'running'

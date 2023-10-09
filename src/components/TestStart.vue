@@ -6,9 +6,25 @@
         <p>Please ensure to not get distracted during the test</p>
         <br><br><br><br>
         <input class="testerInput" type="text" name="tester-name" id="tester-name" v-model="testerName" placeholder="Tester name">
+        <!-- Radio buttons whhich decide the prototype version -->
+        <br><br>
+        <p>Prototype version</p>
+        <section class="prototype-version">
+            <section>
+
+                <input type="radio" id="prototype-version-1" name="prototype-version" value="1" v-model="prototypeVersion">
+                <label for="prototype-version-1">Prototype version 1</label><br>
+            </section>
+            <section>
+
+                <input type="radio" id="prototype-version-2" name="prototype-version" value="2" v-model="prototypeVersion">
+                <label for="prototype-version-2">Prototype version 2</label><br>
+            </section>
+        </section>
+
         <button class="testStartButton" @click="startTest()">Start the test</button>
         <section class="error" v-if="showError">
-            Please fill in your name
+            Please fill in your name and select a prototype version
         </section>
     </section>
 </template>
@@ -20,10 +36,14 @@ const emit = defineEmits(['start'])
 
 const testerName = ref('')
 const showError = ref(false)
+const prototypeVersion = ref('prototype-version-1')
 
 const startTest = () => {
-    if(testerName.value !== '') {
-        emit('start', testerName.value)
+    if(testerName.value !== '' && prototypeVersion.value !== '') {
+        emit('start', {
+            testerName: testerName.value,
+            prototypeVers: prototypeVersion.value
+        })
     } else {
         showError.value = true
     }
@@ -31,6 +51,13 @@ const startTest = () => {
 </script>
 
 <style scoped>
+input[type="radio"] {
+    margin-right: 0.5rem;
+}
+.prototype-version {
+    margin-bottom: 1rem;
+}
+
 .error {
     color: rgb(171, 47, 47);
     font-size: 1.2rem;

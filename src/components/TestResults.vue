@@ -67,6 +67,7 @@ const handleExportEventsClick = () => {
     const jsonData = JSON.stringify({
         tester: props.testerName,
         selectedPlotId: props.selectedPlotId,
+        prototypeVersion: props.prototypeVersion,
         logs: props.logs
     });
     const blob = new Blob([jsonData], { type: 'application/json' });
