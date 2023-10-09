@@ -22,9 +22,11 @@
         </nav>
 
         <transition name="slide-fade">
-        <section class="mobile-nav-popup" v-if="currentMenuMode !== 'none'">
-                <HousesFilters @filterUpdate="filterUpdate($event)" v-if="currentMenuMode === 'filter'" :filterProps="filters" />
-                <CompareHouses @removeFromComparison="removeFromComparison($event)" :comparisonNumbers="props.comparisonNumbers" v-if="currentMenuMode === 'compare'" />
+            <section class="mobile-nav-popup" v-if="currentMenuMode !== 'none'">
+                <HousesFilters :totalAvailablePlots="totalAvailablePlots" @filterUpdate="filterUpdate($event)"
+                    v-if="currentMenuMode === 'filter'" @amtOfFiltersChanged="amtOfFiltersChanged" :filterProps="filters" />
+                <CompareHouses @removeFromComparison="removeFromComparison($event)"
+                    :comparisonNumbers="props.comparisonNumbers" v-if="currentMenuMode === 'compare'" />
             </section>
         </transition>
 
@@ -40,6 +42,7 @@ import CompareHouses from '@/components/CompareHouses.vue'
 const props = defineProps({
     comparisonNumbers: Array,
     filters: Object,
+    totalAvailablePlots: Number,
 })
 const emit = defineEmits(['removeFromComparison', 'filterUpdate'])
 
@@ -49,7 +52,11 @@ const amtOfFilters = ref(0)
 const filterUpdate = (filters) => {
     emit('filterUpdate', filters)
 
-    amtOfFilters.value = 0
+    // amtOfFilters.value = 0
+}
+
+const amtOfFiltersChanged = (amt) => {
+    amtOfFilters.value = amt
 }
 
 
@@ -73,7 +80,7 @@ const toggleMenu = (option) => {
 }
 
 const setMenuVariables = (option) => {
-    if(currentMenuMode.value === option) {
+    if (currentMenuMode.value === option) {
         currentMenuMode.value = 'none'
     } else {
         currentMenuMode.value = option
@@ -82,19 +89,18 @@ const setMenuVariables = (option) => {
 </script>
   
 <style scoped>
-
 .slide-fade-enter-active {
-  transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
 }
 
 .slide-fade-leave-active {
-  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateY(200px);
-  opacity: 0;
+    transform: translateY(200px);
+    opacity: 0;
 }
 
 .activeMenuItem {
@@ -102,6 +108,7 @@ const setMenuVariables = (option) => {
     border-radius: 0.5rem;
     /* Background color for the active menu item */
 }
+
 .mobile-nav-popup {
     position: fixed;
     top: 0;
@@ -144,5 +151,4 @@ button {
     font-size: 1.2rem;
     cursor: pointer;
 }
-
 </style>

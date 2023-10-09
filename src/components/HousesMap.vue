@@ -1,11 +1,15 @@
 <template>
     <section class="map" :class="{ disableScroll: isPlotPopupOpen }">
+        <h3>Appartement building map</h3><br>
+        <p><span style="color:rgb(1, 175, 1); font-weight: bold;">Green</span> = Filter match</p>
+        <p><span style="color:rgb(238, 63, 63); font-weight: bold;">Red</span> = No filter match</p>
         <br>
-        <p>Appartement building</p><br>
+        Choose from <b>{{ totalAvailablePlots }}</b> appartments
+        <br><br>
         <section class="apprtment_wrapper">
             <section v-for="plot in data" @click="handleWoningClick(plot.number)" :key="plot.number" class="apprtment"
                 :class="[
-                    { soldStyling: plot.sale_status === 'sold' },
+                    // { soldStyling: plot.sale_status === 'sold' },
                     { availableStyling: isPlotAvailable(plot) },
                     { soldStyling: !isPlotAvailable(plot) },
                 ]">
@@ -31,11 +35,11 @@
 </template>
   
 <script setup>
-import { ref, defineEmits, defineProps } from 'vue';
+import { ref, defineEmits, defineProps, computed } from 'vue';
 import data from '@/assets/ipmedth-dummy.json';
 import SinglePlotPopup from './SinglePlotPopup.vue';
 
-const emit = defineEmits(['confirm', 'cancel', 'selectComparison', 'plotClick']);
+const emit = defineEmits(['confirm', 'cancel', 'selectComparison', 'plotClick', 'totalAvailablePlotsUpdate']);
 
 // Props and data
 const props = defineProps({
@@ -46,7 +50,10 @@ const isPlotPopupOpen = ref(false);
 const currentPlot = ref(null);
 
 // Filtered plots computed property
-
+const totalAvailablePlots = computed(() => {
+    emit('totalAvailablePlotsUpdate', data.filter((plot) => isPlotAvailable(plot)).length);
+    return data.filter((plot) => isPlotAvailable(plot)).length;
+});
 
 // Methods
 const handleWoningClick = (id) => {
@@ -63,7 +70,7 @@ const handleWoningClick = (id) => {
 };
 
 const handleConfirm = () => {
-    emit('confirm');
+    emit('confirm', currentPlot.value.number);
 };
 
 const handleCancel = () => {
@@ -106,16 +113,16 @@ const isPlotAvailable = (plot) => {
         console.log(plot);
         const isTypeMatch = type.length === 0 || type?.includes(plot.type);
         const isPriceMatch = (plot.price >= minPrice && plot.price <= maxPrice);
-        const isFurnishedMatch = furnished === '' || plot.furnished === furnished;
+        const isFurnishedMatch = furnished === 'any' || plot.furnished === furnished;
         const isIndoorSurfaceMatch = (plot.indoor_surface >= minIndoorSurface && plot.indoor_surface <= maxIndoorSurface);
         const isBedroomsMatch = (plot.bedrooms >= minBedrooms && plot.bedrooms <= maxBedrooms);
         const isExtraRoomsMatch = (plot.extra_rooms >= minExtraRooms && plot.extra_rooms <= maxExtraRooms);
         const isFloorMatch = (plot.floor >= minFloor && plot.floor <= maxFloor);
         const isBathroomsMatch = (plot.bathrooms >= minBathrooms && plot.bathrooms <= maxBathrooms);
-        const isBalconyDirectionMatch = balconyDirection === '' || plot.balcony_direction === balconyDirection;
-        const isParkingSpotsMatch = parkingSpots === -1 || plot.parking_spots === parkingSpots;
-        const isStorageMatch = storage === '' || (storage === plot.has_storage);
-        const isEnergyLabelMatch = energyLabel === '' || plot.energy_label === energyLabel;
+        const isBalconyDirectionMatch = balconyDirection === 'any' || plot.balcony_direction === balconyDirection;
+        const isParkingSpotsMatch = parkingSpots.length === 0 || parkingSpots?.includes(plot.parking_spots);
+        const isStorageMatch = storage === 'any' || (storage === plot.has_storage);
+        const isEnergyLabelMatch = energyLabel.length === 0 || energyLabel?.includes(plot.energy_label);
 
         // Return true if all filter criteria are met, otherwise return false
         console.log('isSaleStatusMatch', isSaleStatusMatch,
@@ -203,16 +210,14 @@ const isPlotAvailable = (plot) => {
 .map {
     margin: 1rem;
     overflow: scroll;
-    box-shadow: 10px 0px black;
     margin-bottom: 8rem;
 }
 
 .apprtment_wrapper {
     display: grid;
 
-    box-shadow: 4px 4px;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     /* transform: skew(10deg, 0deg) scale(0.7); */
 }
 

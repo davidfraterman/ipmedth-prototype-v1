@@ -21,7 +21,7 @@
             </tbody>
         </table>
         <section class="error-msg" v-else>
-            First select some houses to compare
+            Select houses to compare for them to show up here.
         </section>
     </section>
 </template>
@@ -82,7 +82,8 @@ const removeFromComparison = (nr) => {
 h1 {
     text-align: center;
     margin-bottom: 1rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    margin-top: 1rem;
 }
 .removeFromComparison {
     color: red;
@@ -95,7 +96,7 @@ h1 {
 .error-msg {
     text-align: center;
     margin-top: 4rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .comparison {

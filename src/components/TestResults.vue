@@ -45,6 +45,7 @@ const props = defineProps({
     isResultsOpen: Boolean,
     testerName: String,
     prototypeVersion: String,
+    selectedPlotId: String,
 })
 
 
@@ -63,7 +64,11 @@ const handleCloseDetails = () => {
 }
 
 const handleExportEventsClick = () => {
-    const jsonData = JSON.stringify(props.logs);
+    const jsonData = JSON.stringify({
+        tester: props.testerName,
+        selectedPlotId: props.selectedPlotId,
+        logs: props.logs
+    });
     const blob = new Blob([jsonData], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
 

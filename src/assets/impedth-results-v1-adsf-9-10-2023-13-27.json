@@ -1,0 +1,589 @@
+[
+    {
+        "id": 0,
+        "type": "test-start",
+        "time": "2023-10-09T11:25:10.382Z",
+        "millis": 1696850710382,
+        "location": {
+            "x": null,
+            "y": null
+        },
+        "className": null
+    },
+    {
+        "id": 1,
+        "type": "click",
+        "time": "2023-10-09T11:25:10.546Z",
+        "millis": 1696850710546,
+        "location": {
+            "x": 92,
+            "y": 576
+        },
+        "className": "testStartButton"
+    },
+    {
+        "id": 2,
+        "type": "click",
+        "time": "2023-10-09T11:25:11.219Z",
+        "millis": 1696850711219,
+        "location": {
+            "x": 104,
+            "y": 801
+        },
+        "className": "activeMenuItem"
+    },
+    {
+        "id": 3,
+        "type": "click",
+        "time": "2023-10-09T11:25:12.648Z",
+        "millis": 1696850712648,
+        "location": {
+            "x": 163,
+            "y": 94
+        },
+        "className": "resetFilters"
+    },
+    {
+        "id": 4,
+        "type": "click",
+        "time": "2023-10-09T11:25:33.955Z",
+        "millis": 1696850733955,
+        "location": {
+            "x": 53,
+            "y": 92
+        },
+        "className": ""
+    },
+    {
+        "id": 5,
+        "type": "click",
+        "time": "2023-10-09T11:25:35.490Z",
+        "millis": 1696850735490,
+        "location": {
+            "x": 62,
+            "y": 812
+        },
+        "className": ""
+    },
+    {
+        "id": 6,
+        "type": "click",
+        "time": "2023-10-09T11:25:36.605Z",
+        "millis": 1696850736605,
+        "location": {
+            "x": 86,
+            "y": 803
+        },
+        "className": "activeMenuItem"
+    },
+    {
+        "id": 7,
+        "type": "click",
+        "time": "2023-10-09T11:25:38.956Z",
+        "millis": 1696850738956,
+        "location": {
+            "x": 74,
+            "y": 287
+        },
+        "className": ""
+    },
+    {
+        "id": 8,
+        "type": "click",
+        "time": "2023-10-09T11:25:38.956Z",
+        "millis": 1696850738956,
+        "location": {
+            "x": 74,
+            "y": 287
+        },
+        "className": ""
+    },
+    {
+        "id": 9,
+        "type": "click",
+        "time": "2023-10-09T11:25:39.344Z",
+        "millis": 1696850739344,
+        "location": {
+            "x": 52,
+            "y": 378
+        },
+        "className": ""
+    },
+    {
+        "id": 10,
+        "type": "click",
+        "time": "2023-10-09T11:25:40.226Z",
+        "millis": 1696850740226,
+        "location": {
+            "x": 87,
+            "y": 801
+        },
+        "className": ""
+    },
+    {
+        "id": 11,
+        "type": "click",
+        "time": "2023-10-09T11:25:41.368Z",
+        "millis": 1696850741368,
+        "location": {
+            "x": 88,
+            "y": 806
+        },
+        "className": "activeMenuItem"
+    },
+    {
+        "id": 12,
+        "type": "click",
+        "time": "2023-10-09T11:25:44.365Z",
+        "millis": 1696850744365,
+        "location": {
+            "x": 70,
+            "y": 177
+        },
+        "className": ""
+    },
+    {
+        "id": 13,
+        "type": "click",
+        "time": "2023-10-09T11:25:44.365Z",
+        "millis": 1696850744365,
+        "location": {
+            "x": 70,
+            "y": 177
+        },
+        "className": ""
+    },
+    {
+        "id": 14,
+        "type": "click",
+        "time": "2023-10-09T11:25:44.716Z",
+        "millis": 1696850744716,
+        "location": {
+            "x": 50,
+            "y": 149
+        },
+        "className": ""
+    },
+    {
+        "id": 15,
+        "type": "click",
+        "time": "2023-10-09T11:25:45.626Z",
+        "millis": 1696850745626,
+        "location": {
+            "x": 71,
+            "y": 802
+        },
+        "className": ""
+    },
+    {
+        "id": 16,
+        "type": "click",
+        "time": "2023-10-09T11:25:47.093Z",
+        "millis": 1696850747093,
+        "location": {
+            "x": 60,
+            "y": 806
+        },
+        "className": "activeMenuItem"
+    },
+    {
+        "id": 17,
+        "type": "click",
+        "time": "2023-10-09T11:25:48.992Z",
+        "millis": 1696850748992,
+        "location": {
+            "x": 70,
+            "y": 350
+        },
+        "className": ""
+    },
+    {
+        "id": 18,
+        "type": "click",
+        "time": "2023-10-09T11:25:48.992Z",
+        "millis": 1696850748992,
+        "location": {
+            "x": 70,
+            "y": 350
+        },
+        "className": ""
+    },
+    {
+        "id": 19,
+        "type": "click",
+        "time": "2023-10-09T11:25:49.254Z",
+        "millis": 1696850749254,
+        "location": {
+            "x": 54,
+            "y": 316
+        },
+        "className": ""
+    },
+    {
+        "id": 20,
+        "type": "click",
+        "time": "2023-10-09T11:25:50.021Z",
+        "millis": 1696850750021,
+        "location": {
+            "x": 86,
+            "y": 814
+        },
+        "className": ""
+    },
+    {
+        "id": 21,
+        "type": "click",
+        "time": "2023-10-09T11:25:51.466Z",
+        "millis": 1696850751466,
+        "location": {
+            "x": 82,
+            "y": 801
+        },
+        "className": "activeMenuItem"
+    },
+    {
+        "id": 22,
+        "type": "click",
+        "time": "2023-10-09T11:25:53.867Z",
+        "millis": 1696850753867,
+        "location": {
+            "x": 72,
+            "y": 218
+        },
+        "className": ""
+    },
+    {
+        "id": 23,
+        "type": "click",
+        "time": "2023-10-09T11:25:53.868Z",
+        "millis": 1696850753868,
+        "location": {
+            "x": 72,
+            "y": 218
+        },
+        "className": ""
+    },
+    {
+        "id": 24,
+        "type": "click",
+        "time": "2023-10-09T11:26:01.872Z",
+        "millis": 1696850761872,
+        "location": {
+            "x": 298,
+            "y": 814
+        },
+        "className": "activeMenuItem"
+    },
+    {
+        "id": 25,
+        "type": "click",
+        "time": "2023-10-09T11:26:02.606Z",
+        "millis": 1696850762606,
+        "location": {
+            "x": 298,
+            "y": 814
+        },
+        "className": ""
+    },
+    {
+        "id": 26,
+        "type": "click",
+        "time": "2023-10-09T11:26:04.563Z",
+        "millis": 1696850764563,
+        "location": {
+            "x": 96,
+            "y": 806
+        },
+        "className": "activeMenuItem"
+    },
+    {
+        "id": 27,
+        "type": "click",
+        "time": "2023-10-09T11:26:13.580Z",
+        "millis": 1696850773580,
+        "location": {
+            "x": 52,
+            "y": 552
+        },
+        "className": ""
+    },
+    {
+        "id": 28,
+        "type": "click",
+        "time": "2023-10-09T11:26:14.226Z",
+        "millis": 1696850774226,
+        "location": {
+            "x": 110,
+            "y": 805
+        },
+        "className": ""
+    },
+    {
+        "id": 29,
+        "type": "click",
+        "time": "2023-10-09T11:26:15.177Z",
+        "millis": 1696850775177,
+        "location": {
+            "x": 81,
+            "y": 810
+        },
+        "className": "activeMenuItem"
+    },
+    {
+        "id": 30,
+        "type": "click",
+        "time": "2023-10-09T11:26:16.243Z",
+        "millis": 1696850776243,
+        "location": {
+            "x": 177,
+            "y": 96
+        },
+        "className": "resetFilters"
+    },
+    {
+        "id": 31,
+        "type": "click",
+        "time": "2023-10-09T11:26:17.188Z",
+        "millis": 1696850777188,
+        "location": {
+            "x": 74,
+            "y": 803
+        },
+        "className": ""
+    },
+    {
+        "id": 32,
+        "type": "click",
+        "time": "2023-10-09T11:26:17.764Z",
+        "millis": 1696850777764,
+        "location": {
+            "x": 74,
+            "y": 803
+        },
+        "className": "activeMenuItem"
+    },
+    {
+        "id": 33,
+        "type": "click",
+        "time": "2023-10-09T11:26:21.363Z",
+        "millis": 1696850781363,
+        "location": {
+            "x": 52,
+            "y": 416
+        },
+        "className": ""
+    },
+    {
+        "id": 34,
+        "type": "click",
+        "time": "2023-10-09T11:26:22.019Z",
+        "millis": 1696850782019,
+        "location": {
+            "x": 84,
+            "y": 778
+        },
+        "className": {}
+    },
+    {
+        "id": 35,
+        "type": "click",
+        "time": "2023-10-09T11:26:22.764Z",
+        "millis": 1696850782764,
+        "location": {
+            "x": 269,
+            "y": 808
+        },
+        "className": "activeMenuItem"
+    },
+    {
+        "id": 36,
+        "type": "click",
+        "time": "2023-10-09T11:26:23.302Z",
+        "millis": 1696850783302,
+        "location": {
+            "x": 269,
+            "y": 808
+        },
+        "className": ""
+    },
+    {
+        "id": 37,
+        "type": "click",
+        "time": "2023-10-09T11:26:26.188Z",
+        "millis": 1696850786188,
+        "location": {
+            "x": 98,
+            "y": 803
+        },
+        "className": "activeMenuItem"
+    },
+    {
+        "id": 38,
+        "type": "click",
+        "time": "2023-10-09T11:26:32.254Z",
+        "millis": 1696850792254,
+        "location": {
+            "x": 52,
+            "y": 318
+        },
+        "className": ""
+    },
+    {
+        "id": 39,
+        "type": "click",
+        "time": "2023-10-09T11:26:41.139Z",
+        "millis": 1696850801139,
+        "location": {
+            "x": 114,
+            "y": 808
+        },
+        "className": ""
+    },
+    {
+        "id": 40,
+        "type": "click",
+        "time": "2023-10-09T11:26:43.814Z",
+        "millis": 1696850803814,
+        "location": {
+            "x": 130,
+            "y": 774
+        },
+        "className": "activeMenuItem"
+    },
+    {
+        "id": 41,
+        "type": "click",
+        "time": "2023-10-09T11:26:51.963Z",
+        "millis": 1696850811963,
+        "location": {
+            "x": 82,
+            "y": 554
+        },
+        "className": ""
+    },
+    {
+        "id": 42,
+        "type": "keydown",
+        "time": "2023-10-09T11:26:52.948Z",
+        "millis": 1696850812948,
+        "location": {},
+        "className": ""
+    },
+    {
+        "id": 43,
+        "type": "keydown",
+        "time": "2023-10-09T11:26:53.053Z",
+        "millis": 1696850813053,
+        "location": {},
+        "className": ""
+    },
+    {
+        "id": 44,
+        "type": "click",
+        "time": "2023-10-09T11:26:54.424Z",
+        "millis": 1696850814424,
+        "location": {
+            "x": 110,
+            "y": 631
+        },
+        "className": ""
+    },
+    {
+        "id": 45,
+        "type": "keydown",
+        "time": "2023-10-09T11:26:55.492Z",
+        "millis": 1696850815492,
+        "location": {},
+        "className": ""
+    },
+    {
+        "id": 46,
+        "type": "keydown",
+        "time": "2023-10-09T11:26:56.821Z",
+        "millis": 1696850816821,
+        "location": {},
+        "className": ""
+    },
+    {
+        "id": 47,
+        "type": "keydown",
+        "time": "2023-10-09T11:26:56.951Z",
+        "millis": 1696850816951,
+        "location": {},
+        "className": ""
+    },
+    {
+        "id": 48,
+        "type": "keydown",
+        "time": "2023-10-09T11:26:57.357Z",
+        "millis": 1696850817357,
+        "location": {},
+        "className": ""
+    },
+    {
+        "id": 49,
+        "type": "click",
+        "time": "2023-10-09T11:26:58.308Z",
+        "millis": 1696850818308,
+        "location": {
+            "x": 84,
+            "y": 802
+        },
+        "className": ""
+    },
+    {
+        "id": 50,
+        "type": "click",
+        "time": "2023-10-09T11:26:59.558Z",
+        "millis": 1696850819558,
+        "location": {
+            "x": 112,
+            "y": 369
+        },
+        "className": "apprtment availableStyling"
+    },
+    {
+        "id": 51,
+        "type": "click",
+        "time": "2023-10-09T11:27:04.969Z",
+        "millis": 1696850824969,
+        "location": {
+            "x": 260,
+            "y": 503
+        },
+        "className": "select-plot-button"
+    },
+    {
+        "id": 52,
+        "type": "click",
+        "time": "2023-10-09T11:27:05.937Z",
+        "millis": 1696850825937,
+        "location": {
+            "x": 262,
+            "y": 498
+        },
+        "className": "confirm-select__content__button-cancel"
+    },
+    {
+        "id": 53,
+        "type": "click",
+        "time": "2023-10-09T11:27:06.341Z",
+        "millis": 1696850826341,
+        "location": {
+            "x": 262,
+            "y": 499
+        },
+        "className": "select-plot-button"
+    },
+    {
+        "id": 54,
+        "type": "test-end",
+        "time": "2023-10-09T11:27:06.851Z",
+        "millis": 1696850826851,
+        "location": {
+            "x": null,
+            "y": null
+        },
+        "className": null
+    }
+]

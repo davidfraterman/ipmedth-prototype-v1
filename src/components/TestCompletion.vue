@@ -47,6 +47,7 @@ const continueToResults = () => {
     left: 0;
     width: 100vw;
     height: 100vh;
+    z-index: 3;
     background-color: white;
     display: flex;
     justify-content: center;

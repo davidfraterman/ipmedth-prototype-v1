@@ -6,15 +6,16 @@
 
       <!-- App -->
       <HousesMap 
-       
+        @totalAvailablePlotsUpdate="totalAvailablePlots = $event"
         :comparisonNumbers="comparisonNumbers" 
-        @confirm="handleTestEnd()" 
+        @confirm="handleTestEnd($event)" 
         @selectComparison="handleNewComparisonId($event)"
         :filters="filters"
         @cancel="isPlotPopupOpen = false"
         @plotClick="isPlotPopupOpen = true"
       />
       <FilterMenu 
+        :totalAvailablePlots="totalAvailablePlots"
         :filters="filters"
         @removeFromComparison="removeFromComparison($event)" 
         @filterUpdate="filterUpdate($event)"
@@ -30,6 +31,7 @@
         :isResultsOpen="isResultsOpen" 
         :logs="logs" 
         :testerName="testerName"
+        :selectedPlotId="selectedPlotId"
       />
       
     </section>
@@ -55,7 +57,32 @@ const prototypeVersion = ref('1')
 const testerName = ref('')
 const comparisonNumbers = ref([])
 const isPlotPopupOpen = ref(false)
-const filters = ref({})
+const selectedPlotId = ref(null)
+const totalAvailablePlots = ref(0)
+
+const filters = ref({
+    saleStatus: ['for-sale'],
+    type: [],
+    minPrice: 225000,
+    maxPrice: 1000000,
+    furnished: 'any',
+    minIndoorSurface: 30,
+    maxIndoorSurface: 250,
+    minBedrooms: 1,
+    maxBedrooms: 5,
+    minExtraRooms: 1,
+    maxExtraRooms: 5,
+    minOutdoorSurface: 0,
+    maxOutdoorSurface: 10000,
+    minFloor: 1,
+    maxFloor: 25,
+    minBathrooms: 1,
+    maxBathrooms: 3,
+    balconyDirection: 'any',
+    parkingSpots: [],
+    storage: 'any',
+    energyLabel: [],
+});
 
 const filterUpdate = (filtersParameter) => {
   filters.value = filtersParameter
@@ -90,10 +117,11 @@ const handleTestStart = (name) => {
   )
 }
 
-const handleTestEnd = () => {
+const handleTestEnd = (plotId) => {
   isTestCompleted.value = true
   testStatus.value = 'ended'
   endTime.value = Date.now()
+  selectedPlotId.value = plotId
 
   appendLogEntry(
     logs.value.length,
