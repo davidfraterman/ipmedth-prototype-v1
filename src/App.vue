@@ -13,6 +13,7 @@
         :filters="filters"
         @cancel="isPlotPopupOpen = false"
         @plotClick="isPlotPopupOpen = true"
+        :prototypeVersion="prototypeVersion"
       />
       <FilterMenu 
         :prototypeVersion="prototypeVersion"

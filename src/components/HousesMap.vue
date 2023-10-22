@@ -30,6 +30,7 @@
     <transition name="slide-fade">
         <SinglePlotPopup class="plot-popup" v-if="isPlotPopupOpen && currentPlot !== null" :current-plot="currentPlot"
             :comparisonNumbers="comparisonNumbers" @confirm="handleConfirm" @cancel="handleCancel"
+            :prototypeVersion="prototypeVersion"
             @comparison-add="emit('selectComparison', $event)">
         </SinglePlotPopup>
     </transition>
@@ -46,6 +47,7 @@ const emit = defineEmits(['confirm', 'cancel', 'selectComparison', 'plotClick', 
 const props = defineProps({
     comparisonNumbers: Array,
     filters: Object,
+    prototypeVersion: String,
 });
 const isPlotPopupOpen = ref(false);
 const currentPlot = ref(null);

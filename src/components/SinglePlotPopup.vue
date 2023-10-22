@@ -70,7 +70,7 @@
                 </section>
             </section>
             <button class="select-plot-button" @click="toggleConfirmPopup()">This is my closest match</button>
-            <button class="plot-popup__content-close" @click="addToComparison(currentPlot.number)"
+            <button class="plot-popup__content-close" v-if="prototypeVersion == '1'" @click="addToComparison(currentPlot.number)"
                 :class="{ alreadyAddedCompareStyling: comparisonNumbers.includes(currentPlot.number) }">
                 {{ comparisonNumbers.includes(currentPlot.number) ? 'Added to comparison' : 'Add to comparison' }}
             </button>
@@ -95,6 +95,7 @@ const emit = defineEmits(['confirm', 'cancel', 'comparison-add'])
 const props = defineProps({
     currentPlot: Object,
     comparisonNumbers: Array,
+    prototypeVersion: String,
 })
 
 let { comparisonNumbers } = toRefs(props)
