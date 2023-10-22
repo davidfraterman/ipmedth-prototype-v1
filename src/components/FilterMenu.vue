@@ -9,7 +9,7 @@
                 </svg>
                 Filter ({{ amtOfFilters }})
             </button>
-            <button @click="toggleMenu('compare')" :class="{ activeMenuItem: currentMenuMode === 'compare' }">
+            <button v-if="prototypeVersion === '1'" @click="toggleMenu('compare')" :class="{ activeMenuItem: currentMenuMode === 'compare' }">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <g fill="none">
                         <path fill="currentColor" d="M6 4h6v16H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" opacity=".16" />
@@ -43,6 +43,7 @@ const props = defineProps({
     comparisonNumbers: Array,
     filters: Object,
     totalAvailablePlots: Number,
+    prototypeVersion: String,
 })
 const emit = defineEmits(['removeFromComparison', 'filterUpdate'])
 

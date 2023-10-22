@@ -6,7 +6,7 @@
                 <tr>
                     <th>Apprt. Number</th>
                     <th v-for="nr in comparisonNumbers" :key="nr">
-                        {{ nr }} <p @click="removeFromComparison(nr)" class="removeFromComparison">remove</p>
+                        {{ nr }} <p @click="removeFromComparison(nr)" class="removeFromComparison" >remove</p>
                     </th>
                 </tr>
             </thead>
@@ -39,9 +39,7 @@ let emit = defineEmits(['removeFromComparison'])
 
 let { comparisonNumbers } = toRefs(props)
 
-watch(comparisonNumbers.value, (newValue, oldValue) => {
-    console.log('newValue', newValue);
-    console.log('oldValue', oldValue);
+watch(comparisonNumbers.value, () => {
     setComparisons()
 })
 
@@ -61,7 +59,6 @@ const setComparisons = () => {
             for (let j = 0; j < data.length; j++) {
                 const plot = data[j];
                 if (plot.number === plotNumber) {
-                    console.log('plot', plot.number, plotNumber);
                     houses.value.push(plot);
                 }
             }

@@ -17,18 +17,18 @@
             <div class="filters-item">
                 <h3>Price</h3>
                 <div>
-                    <label for="minPrice">Min Price</label>
-                    <input type="number" id="minPrice" v-model="filters.minPrice" />
+                    <label for="minPrice" class="filters-item-min-price">Min Price</label>
+                    <input type="number" id="minPrice" v-model="filters.minPrice" class="filters-item-min-price" />
                 </div>
                 <div>
-                    <label for="maxPrice">Max Price</label>
-                    <input type="number" id="maxPrice" v-model="filters.maxPrice" />
+                    <label for="maxPrice" class="filters-item-max-price">Max Price</label>
+                    <input type="number" id="maxPrice" v-model="filters.maxPrice" class="filters-item-max-price"/>
                 </div>
             </div>
             <!-- Type -->
             <div class="filters-item">
                 <h3>Type</h3>
-                <div v-for="type in typeValues" :key="type" class="list-item">
+                <div v-for="type in typeValues" :key="type" class="list-item" :class="'type'+type">
                     <input :key="type" type="checkbox" :id="type" :name="type" v-model="filters.type" :value="type" />
                     <label :for="type">{{ type }}</label>
                 </div>
@@ -37,7 +37,7 @@
             <!-- Furnished/Unfurnished -->
             <div class="filters-item">
                 <h3>Furnished/Unfurnished</h3>
-                <div v-for="furnished in furnishedValues" :key="furnished" class="list-item">
+                <div v-for="furnished in furnishedValues" :key="furnished" class="list-item"  :class="'furnished'+type">
                     <input :key="furnished" type="radio" :id="furnished" :name="furnished" v-model="filters.furnished"
                         :value="furnished" />
                     <label :for="furnished">{{ furnished }}</label>
@@ -47,54 +47,54 @@
             <div class="filters-item">
                 <h3>Indoor Square Footage</h3>
                 <div>
-                    <label for="minIndoorSurface">Min Indoor Surface</label>
-                    <input type="number" id="minIndoorSurface" v-model="filters.minIndoorSurface" />
+                    <label for="minIndoorSurface" class="min-indoor-surface">Min Indoor Surface</label>
+                    <input type="number" id="minIndoorSurface" v-model="filters.minIndoorSurface" class="min-indoor-surface"/>
                 </div>
                 <div>
-                    <label for="maxIndoorSurface">Max Indoor Surface</label>
-                    <input type="number" id="maxIndoorSurface" v-model="filters.maxIndoorSurface" />
+                    <label for="maxIndoorSurface" class="max-indoor-surface">Max Indoor Surface</label>
+                    <input type="number" id="maxIndoorSurface" v-model="filters.maxIndoorSurface" class="max-indoor-surface"/>
                 </div>
             </div>
             <!-- Amount of Bedrooms -->
             <div class="filters-item">
                 <h3>Amount of Bedrooms</h3>
                 <div>
-                    <label for="minBedrooms">Min Bedrooms</label>
-                    <input type="number" id="minBedrooms" v-model="filters.minBedrooms" />
+                    <label for="minBedrooms" class="min-bedrooms">Min Bedrooms</label>
+                    <input type="number" id="minBedrooms" v-model="filters.minBedrooms" class="min-bedrooms"/>
                 </div>
                 <div>
-                    <label for="maxBedrooms">Max Bedrooms</label>
-                    <input type="number" id="maxBedrooms" v-model="filters.maxBedrooms" />
+                    <label for="maxBedrooms" class="max-bedrooms">Max Bedrooms</label>
+                    <input type="number" id="maxBedrooms" v-model="filters.maxBedrooms" class="max-bedrooms"/>
                 </div>
             </div>
             <!-- Outdoor Square Footage -->
             <div class="filters-item">
                 <h3>Garden/Balcony Square Footage</h3>
                 <div>
-                    <label for="minOutdoorSurface">Min Outdoor Surface</label>
-                    <input type="number" id="minOutdoorSurface" v-model="filters.minOutdoorSurface" />
+                    <label for="minOutdoorSurface" class="min-outdoor">Min Outdoor Surface</label>
+                    <input type="number" id="minOutdoorSurface" v-model="filters.minOutdoorSurface" class="min-outdoor"/>
                 </div>
                 <div>
-                    <label for="maxOutdoorSurface">Max Outdoor Surface</label>
-                    <input type="number" id="maxOutdoorSurface" v-model="filters.maxOutdoorSurface" />
+                    <label for="maxOutdoorSurface" class="max-outdoor">Max Outdoor Surface</label>
+                    <input type="number" id="maxOutdoorSurface" v-model="filters.maxOutdoorSurface" class="max-outdoor"/>
                 </div>
             </div>
             <!-- Total Amount of Rooms -->
             <div class="filters-item">
                 <h3>Total Amount of Rooms</h3>
                 <div>
-                    <label for="minExtraRooms">Min Extra Rooms</label>
-                    <input type="number" id="minExtraRooms" v-model="filters.minExtraRooms" />
+                    <label for="minExtraRooms" class="min-extra-rooms">Min Extra Rooms</label>
+                    <input type="number" id="minExtraRooms" v-model="filters.minExtraRooms" class="min-extra-rooms"/>
                 </div>
                 <div>
-                    <label for="maxExtraRooms">Max Extra Rooms</label>
-                    <input type="number" id="maxExtraRooms" v-model="filters.maxExtraRooms" />
+                    <label for="maxExtraRooms" class="max-extra-rooms">Max Extra Rooms</label>
+                    <input type="number" id="maxExtraRooms" v-model="filters.maxExtraRooms" class="max-extra-rooms"/>
                 </div>
             </div>
             <!-- Direction of Garden/Balcony -->
             <div class="filters-item">
                 <h3>Direction of Garden/Balcony</h3>
-                <div v-for="direction in balconyDirectionValues" :key="direction" class="list-item">
+                <div v-for="direction in balconyDirectionValues" :key="direction" class="list-item" :class="'direction'+direction">
                     <input :key="direction" type="radio" :id="direction" :name="direction"
                         v-model="filters.balconyDirection" :value="direction" />
                     <label :for="direction">{{ direction }}</label>
@@ -103,7 +103,7 @@
             <!-- Parking Availability -->
             <div class="filters-item">
                 <h3>Parking Availability</h3>
-                <div v-for="parking in parkingValues" :key="parking" class="list-item">
+                <div v-for="parking in parkingValues" :key="parking" class="list-item" :class="'parking'+parking">
                     <input :key="parking" type="checkbox" :id="parking" :name="parking" v-model="filters.parkingSpots"
                         :value="parking" />
                     <label :for="parking">{{ parking }}</label>
@@ -112,7 +112,7 @@
             <!-- Has Storage or Shed -->
             <div class="filters-item">
                 <h3>Has Storage or Shed</h3>
-                <div v-for="storage in storageValues" :key="storage" class="list-item">
+                <div v-for="storage in storageValues" :key="storage" class="list-item" :class="'storage'+storage">
                     <input :key="storage" type="radio" :id="storage" :name="storage" v-model="filters.storage"
                         :value="storage" />
                     <label :for="storage">{{ storage }}</label>
@@ -122,18 +122,18 @@
             <div class="filters-item">
                 <h3>Floor Level</h3>
                 <div>
-                    <label for="minFloor">Min Floor</label>
-                    <input type="number" id="minFloor" v-model="filters.minFloor" />
+                    <label for="minFloor" class="min-floor">Min Floor</label>
+                    <input type="number" id="minFloor" v-model="filters.minFloor" class="min-floor"/>
                 </div>
                 <div>
-                    <label for="maxFloor">Max Floor</label>
-                    <input type="number" id="maxFloor" v-model="filters.maxFloor" />
+                    <label for="maxFloor" class="max-floor">Max Floor</label>
+                    <input type="number" id="maxFloor" v-model="filters.maxFloor" class="max-floor"/>
                 </div>
             </div>
             <!-- Energylabel -->
             <div class="filters-item">
                 <h3>Energylabel</h3>
-                <div v-for="energyLabel in energyLabelValues" :key="energyLabel" class="list-item">
+                <div v-for="energyLabel in energyLabelValues" :key="energyLabel" class="list-item" :class="'energyLabel'+energyLabel">
                     <input :key="energyLabel" type="checkbox" :id="energyLabel" :name="energyLabel"
                         v-model="filters.energyLabel" :value="energyLabel" />
                     <label :for="energyLabel">{{ energyLabel }}</label>
@@ -143,12 +143,12 @@
             <div class="filters-item">
                 <h3>Bathrooms</h3>
                 <div>
-                    <label for="minBathrooms">Min Bathrooms</label>
-                    <input type="number" id="minBathrooms" v-model="filters.minBathrooms" />
+                    <label for="minBathrooms" class="min-bath">Min Bathrooms</label>
+                    <input type="number" id="minBathrooms" v-model="filters.minBathrooms" class="min-bath"/>
                 </div>
                 <div>
-                    <label for="maxBathrooms">Max Bathrooms</label>
-                    <input type="number" id="maxBathrooms" v-model="filters.maxBathrooms" />
+                    <label for="maxBathrooms" class="max-bath">Max Bathrooms</label>
+                    <input type="number" id="maxBathrooms" v-model="filters.maxBathrooms" class="max-bath" />
                 </div>
             </div>
         </div>

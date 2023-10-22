@@ -7,11 +7,12 @@
         Choose from <b>{{ totalAvailablePlots }}</b> appartments
         <br><br>
         <section class="apprtment_wrapper">
-            <section v-for="plot in data" @click="handleWoningClick(plot.number)" :key="plot.number" class="apprtment"
+            <section v-for="plot in data" @click="handleWoningClick(plot.number)"  :key="plot.number" class="apprtment"
                 :class="[
                     // { soldStyling: plot.sale_status === 'sold' },
                     { availableStyling: isPlotAvailable(plot) },
                     { soldStyling: !isPlotAvailable(plot) },
+                    'apprt' + plot.number
                 ]">
                 {{ plot.number }}
                 <section class="apprtment-compare-icon" v-if="comparisonNumbers.includes(plot.number)">
@@ -108,9 +109,7 @@ const isPlotAvailable = (plot) => {
         // console.log('props.filters', props.filters);
 
         // Check if the plot's properties match the filter criteria
-        console.log(saleStatus);
         const isSaleStatusMatch = saleStatus?.length === 0 || saleStatus?.includes(plot.sale_status);
-        console.log(plot);
         const isTypeMatch = type.length === 0 || type?.includes(plot.type);
         const isPriceMatch = (plot.price >= minPrice && plot.price <= maxPrice);
         const isFurnishedMatch = furnished === 'any' || plot.furnished === furnished;
@@ -125,35 +124,35 @@ const isPlotAvailable = (plot) => {
         const isEnergyLabelMatch = energyLabel.length === 0 || energyLabel?.includes(plot.energy_label);
 
         // Return true if all filter criteria are met, otherwise return false
-        console.log('isSaleStatusMatch', isSaleStatusMatch,
-            isTypeMatch,
-            isPriceMatch,
-            isFurnishedMatch,
-            isIndoorSurfaceMatch,
-            isBedroomsMatch,
-            isExtraRoomsMatch,
-            isFloorMatch,
-            isBathroomsMatch,
-            isBalconyDirectionMatch,
-            isParkingSpotsMatch,
-            isStorageMatch,
-            isEnergyLabelMatch);
+        // console.log('isSaleStatusMatch', isSaleStatusMatch,
+        //     isTypeMatch,
+        //     isPriceMatch,
+        //     isFurnishedMatch,
+        //     isIndoorSurfaceMatch,
+        //     isBedroomsMatch,
+        //     isExtraRoomsMatch,
+        //     isFloorMatch,
+        //     isBathroomsMatch,
+        //     isBalconyDirectionMatch,
+        //     isParkingSpotsMatch,
+        //     isStorageMatch,
+        //     isEnergyLabelMatch);
 
-        if (isSaleStatusMatch &&
-            isTypeMatch &&
-            isPriceMatch &&
-            isFurnishedMatch &&
-            isIndoorSurfaceMatch &&
-            isBedroomsMatch &&
-            isExtraRoomsMatch &&
-            isFloorMatch &&
-            isBathroomsMatch &&
-            isBalconyDirectionMatch &&
-            isParkingSpotsMatch &&
-            isStorageMatch &&
-            isEnergyLabelMatch) {
-            console.log('true');
-        }
+        // if (isSaleStatusMatch &&
+        //     isTypeMatch &&
+        //     isPriceMatch &&
+        //     isFurnishedMatch &&
+        //     isIndoorSurfaceMatch &&
+        //     isBedroomsMatch &&
+        //     isExtraRoomsMatch &&
+        //     isFloorMatch &&
+        //     isBathroomsMatch &&
+        //     isBalconyDirectionMatch &&
+        //     isParkingSpotsMatch &&
+        //     isStorageMatch &&
+        //     isEnergyLabelMatch) {
+        //     console.log('true');
+        // }
 
         return (
             isSaleStatusMatch &&

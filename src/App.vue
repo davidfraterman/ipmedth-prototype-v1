@@ -15,6 +15,7 @@
         @plotClick="isPlotPopupOpen = true"
       />
       <FilterMenu 
+        :prototypeVersion="prototypeVersion"
         :totalAvailablePlots="totalAvailablePlots"
         :filters="filters"
         @removeFromComparison="removeFromComparison($event)" 
@@ -86,7 +87,6 @@ const filters = ref({
 
 const filterUpdate = (filtersParameter) => {
   filters.value = filtersParameter
-  console.log('filter update', filtersParameter)
 }
 
 const handleNewComparisonId = (id) => {
@@ -140,6 +140,7 @@ const handleTestEnd = (plotId) => {
 
 // event logger
 document.addEventListener('click', (e) => {
+  console.log(e);
   addLogEntry(e)
 })
 document.addEventListener('keydown', (e) => {
