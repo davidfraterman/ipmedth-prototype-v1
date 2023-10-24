@@ -36,7 +36,7 @@
 
             <!-- Furnished/Unfurnished -->
             <div class="filters-item">
-                <h3>Furnished/Unfurnished</h3>
+                <h3>Furnished</h3>
                 <div v-for="furnished in furnishedValues" :key="furnished" class="list-item"  :class="'furnished'+type">
                     <input :key="furnished" type="radio" :id="furnished" :name="furnished" v-model="filters.furnished"
                         :value="furnished" />
@@ -110,14 +110,14 @@
                 </div>
             </div>
             <!-- Has Storage or Shed -->
-            <div class="filters-item">
+            <!-- <div class="filters-item">
                 <h3>Has Storage or Shed</h3>
                 <div v-for="storage in storageValues" :key="storage" class="list-item" :class="'storage'+storage">
                     <input :key="storage" type="radio" :id="storage" :name="storage" v-model="filters.storage"
                         :value="storage" />
                     <label :for="storage">{{ storage }}</label>
                 </div>
-            </div>
+            </div> -->
             <!-- Floor Level -->
             <div class="filters-item">
                 <h3>Floor Level</h3>
@@ -264,7 +264,7 @@ const typeValues = ["penthouse", "appartment"];
 const furnishedValues = [true, false, 'any'];
 const balconyDirectionValues = ["east", "west", "north", "south", 'any'];
 const parkingValues = [0, 1, 2, 3];
-const storageValues = [true, false, 'any'];
+// const storageValues = [true, false, 'any'];
 const energyLabelValues = ["F", "E", "D", "B", "A", "A+", "A++", "A+++"];
 
 </script>
